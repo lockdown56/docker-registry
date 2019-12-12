@@ -1,0 +1,4 @@
+db/
+!db/.git-keep
+registry/
+!registry/.git-keep

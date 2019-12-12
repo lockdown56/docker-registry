@@ -1,0 +1,20 @@
+version: '3'
+services:
+  registry: 
+    container_name: registry-srv
+    image: registry:2
+    ports: 
+      - "5000:5000"
+    volumes: 
+      - ./conf/registry-srv.yml:/etc/docker/registry/config.yml:ro
+      - ./conf/auth.cert:/etc/docker/registry/auth.cert
+      - ./registry:/var/lib/registry/docker/registry
+  dashboard: 
+    container_name: registry-web
+    image: hyper/docker-registry-web
+    ports: 
+      - "8080:8080"
+    volumes: 
+      - ./conf/registry-web.yml:/conf/config.yml:ro
+      - ./conf/auth.key:/conf/auth.key
+      - ./db:/data
